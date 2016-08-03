@@ -17,7 +17,7 @@ class Post(models.Model):
 class Commentario(models.Model):
     commfield = models.TextField()
     pubdate = models.DateTimeField(auto_now_add=True)
-    article = models.ForeignKey(Post, null=True)
+    article = models.ForeignKey(Post, null=True, related_name="comments")
 
     def __unicode__(self):
             return self.commfield

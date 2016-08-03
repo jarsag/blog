@@ -20,11 +20,13 @@ def post_create(request):
 
 
 def post_detail(request, id=None):
-    instance = get_object_or_404(Post, id=id)
+    post = get_object_or_404(Post, id=id)
     context = {
-	"title": instance.title,
-	"instance":instance,
-}
+    	"title": post.title,
+    	"post": post,
+        "comments": post.comments.all(),
+        "form": CommentarioForm(request.POST or None)}
+    
     return render(request, "post_detail.html", context)
 
 def post_list(request):
@@ -59,15 +61,21 @@ def post_delete(request, id=None):
     return redirect("posts:list")
 
 def comm_create(request, id=None):
-    instance = get_object_or_404(Post, id=id)
+    post = get_object_or_404(Post, id=id)
+    
     form = CommentarioForm(request.POST or None)
+    
     if form.is_valid():
-        instance = form.save(commit=False)
-        instance.save()
+        comment = form.save(commit=False)
+        comment.article = post
+        comment.save()
+        
         messages.success(request, "Created")
-        return HttpResponseRedirect(instance.get_absolute_url())
+        
+        return HttpResponseRedirect(post.get_absolute_url())
     else:
         messages.error(request, "Not Created")
+    
     context = {
 	    "form": form,
 	}
