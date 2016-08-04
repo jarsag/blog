@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Post
+from .models import Post, Commentario
 from .forms import PostForm,CommentarioForm
 from django.contrib import messages
 
@@ -59,6 +59,13 @@ def post_delete(request, id=None):
     instance.delete()
     messages.success(request, "Deleted")
     return redirect("posts:list")
+
+def comm_delete(request, pk=None):
+    comme = get_object_or_404(Commentario, pk=pk)
+    comme.delete()
+    messages.success(request, "Deleted")
+    return redirect("posts:list")
+
 
 def comm_create(request, id=None):
     post = get_object_or_404(Post, id=id)

@@ -23,7 +23,7 @@
 
 <ul>
 {% for comment in comments %}
-    <li>{{ comment.commfield }} <a href="/posts/{{post.id}}/comment/{{comment.id}}/delete/">Удалить</a></li>
+    <li>{{ comment.commfield }} <a href="/posts/{{post.id}}/comment/{{comment.pk}}/delete/">Удалить</a></li>
 {% endfor %}
 </ul>
 
