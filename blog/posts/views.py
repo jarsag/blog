@@ -9,10 +9,10 @@ def post_create(request):
     if form.is_valid():
 	instance = form.save(commit=False)
 	instance.save()
-	messages.success(request, "Created")
+	# messages.success(request, "Created")
 	return HttpResponseRedirect(instance.get_absolute_url())
-    else:
-	messages.error(request, "Not Created")
+    # else:
+	# messages.error(request, "Not Created")
     context = {
 	    "form": form,
 	}
@@ -44,7 +44,7 @@ def post_updated(request, id=None):
     if form.is_valid():
 	instance = form.save(commit=False)
 	instance.save()
-	messages.success(request, "Saved")
+	# messages.success(request, "Saved")
 	return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
@@ -57,13 +57,13 @@ def post_updated(request, id=None):
 def post_delete(request, id=None):
     instance = get_object_or_404(Post, id=id)
     instance.delete()
-    messages.success(request, "Deleted")
+    # messages.success(request, "Deleted")
     return redirect("posts:list")
 
 def comm_delete(request, pk=None):
     comme = get_object_or_404(Commentario, pk=pk)
     comme.delete()
-    messages.success(request, "Deleted")
+    # messages.success(request, "Deleted")
     return redirect("posts:list")
 
 
@@ -77,11 +77,11 @@ def comm_create(request, id=None):
         comment.article = post
         comment.save()
         
-        messages.success(request, "Created")
+        # messages.success(request, "Created")
         
         return HttpResponseRedirect(post.get_absolute_url())
-    else:
-        messages.error(request, "Not Created")
+    # else:
+    #     messages.error(request, "Not Created")
     
     context = {
 	    "form": form,

@@ -27,11 +27,16 @@
 {% endfor %}
 </ul>
 
+
 <form method='POST' action='/posts/{{post.id}}/comment/'>{% csrf_token %}
 {{ form.as_p  }}
 
 <input type='submit' value = 'Comment'/>
 </form>
+
+<ul>
+  <li> <a href="/posts/">Назад</a></li>
+</ul>
 
 
 <!-- <a href="/posts/{{post.id}}/comment/">Добавить комментарий</a> -->
