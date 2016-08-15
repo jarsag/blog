@@ -6,6 +6,6 @@ from .views import comm_create, comm_detail
 
 urlpatterns = [
 	# url(r'^$', post_list, name='list'),
-    url(r'^(?P<postid>\d+)/create/$', comm_create),
+    url(r'^create/$', comm_create),
     url(r'^(?P<id>\d+)/$', comm_detail, name='detail'),
 ]

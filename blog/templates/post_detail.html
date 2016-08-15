@@ -15,31 +15,15 @@
 {{ title }}
 </h1>
 
-{{post.title}}</br>
-{{post.content}}</br>
-{{post.updated}}</br>
-{{post.timestamp}}</br>
-{{post.id}}</br>
-
-<ul>
-{% for comment in comments %}
-    <li>{{ comment.commfield }} <a href="/posts/{{post.id}}/comment/{{comment.pk}}/delete/">Удалить</a></li>
-{% endfor %}
-</ul>
+{{instance.title}}</br>
+{{instance.content}}</br>
+{{instance.updated}}</br>
+{{instance.timestamp}}</br>
+{{instance.id}}</br>
+{{instance.commfield}}</br>
 
 
-<form method='POST' action='/posts/{{post.id}}/comment/'>{% csrf_token %}
-{{ form.as_p  }}
 
-<input type='submit' value = 'Comment'/>
-</form>
-
-<ul>
-  <li> <a href="/posts/">Назад</a></li>
-</ul>
-
-
-<!-- <a href="/posts/{{post.id}}/comment/">Добавить комментарий</a> -->
 
 </body>
 

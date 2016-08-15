@@ -1,30 +1,22 @@
  
 <html>
 
-<br>
+<body>
 
 <h1>
 {{ title }} is here!
 </h1>
 
 {% for obj in object_list %}
-<!--{% url "posts:detail" id=obj.id %}-->
-<a href='{{obj.get_absolute_url}}'> {{obj.title}}</a>  </br>
-<!--{{obj.content}}</br>-->
+{% url "posts:detail" id=obj.id %}
+<a href='{{obj.get_absolute_url}}'> {{obj.title}}</a></br>
+{{obj.content}}</br>
 {{obj.updated}}</br>
 {{obj.timestamp}}</br>
 {{obj.id}}</br>
 
+
 {% endfor %}
-
-<ul>
-{% for post in object_list %}
-    <li> {{ post.title }} <a href="/posts/{{post.id}}/delete/">Удалить</a> / <a href="/posts/{{post.id}}/edit/">Редактировать</a> </li>
-{% endfor %}
-</ul>
-
-<ul>   <li><a href="/posts/create">Создать статью</a> </li> </ul>
-
 
 </body>
 

@@ -7,8 +7,7 @@ from .views import(
     post_updated,
     post_delete,
     comm_create,
-    comm_detail,
-    comm_delete,
+    comm_detail
 )
 
 urlpatterns = [
@@ -19,7 +18,6 @@ urlpatterns = [
 	url(r'^(?P<id>\d+)/delete/$', post_delete),
     url(r'^(?P<id>\d+)/comment/$', comm_create),
     url(r'^(?P<id>\d+)/$', comm_detail, name='detail'),
-    url(r'^(?P<id>\d+)/comment/(?P<pk>\d+)/delete/$', comm_delete),
 #	url(r'^posts/$', "<appname>.views.<function>")
 
 ]
