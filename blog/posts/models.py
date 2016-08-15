@@ -17,13 +17,13 @@ class Post(models.Model):
 class Commentario(models.Model):
     commfield = models.TextField()
     pubdate = models.DateTimeField(auto_now_add=True)
-    article = models.ForeignKey(Post, null=True)
+    article = models.ForeignKey(Post, null=True, related_name="comments")
 
     def __unicode__(self):
             return self.commfield
 
     def get_absolute_url(self):
-         return reverse("posts:detail", kwargs={"id": self.id})
+         return reverse("posts:detail", kwargs={"pk": self.pk})
 
 
 
