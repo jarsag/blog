@@ -1,8 +1,12 @@
- 
+{% load staticfiles %} 
 
 <html>
 
-<body style="background-color:#FFFFF0">
+	<head>
+		<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
+	</head>
+
+	<body style="background-color:#FFFFF0">
 
 {% if messages %}
 <ul class="messages">
@@ -12,6 +16,14 @@
 </ul>
 {% endif  %}
 <h1 style="background-color:#D2691E"> <Font color = "#FFFFFF" face="segoe script"> {{ title }} </Font>  </h1>
+
+<!--
+	<div>
+		<img src="{% static "posts/images/article.jpg" %}">
+	</div>
+-->
+
+<div class="article-image"></div>
 
 <Font color = "#D2691E" size="5 " face="segoe script"> {{post.content}} </Font> </br>
 <Font color = "#CFCFCF"> Редактировано: {{post.updated}}</Font></br>

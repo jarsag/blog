@@ -1,11 +1,14 @@
+{% load staticfiles %}
  
 <html>
 
+<head>
+	<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
+</head>
 
+<body>
 
-<body style="background-color:#FFFFF0">
-
-<h1 style="background-color:#D2691E"> <Font color = "#FFFFFF" face="segoe script" size="21"> Тестовый блог </Font>  </h1>
+<h1 class="main-header">Тестовый блог</h1>
 <!--{% load staticfiles %}-->
 <!--<img src="{% static "blog/1.jpg" %}"/>-->
 
@@ -17,17 +20,15 @@
 <!--{% url "posts:detail" id=obj.id %}-->
 <a href='{{obj.get_absolute_url}}'> <Font color = "#D2691E" face="segoe script" size = "5"> {{obj.title}} </Font> </a>  </br>
 <!--{{obj.content}}</br>-->
-<Font color = "#CFCFCF"> Редактировано: {{obj.updated}} </Font> </br>
-<Font color = "#CFCFCF"> Опубликовано: {{obj.timestamp}}</Font> </br>
-<Font color = "#CFCFCF"> {{obj.id}} </Font> </br>
+<div class="article-info">Редактировано: {{obj.updated}}</div>
+<div class="article-info">Опубликовано: {{obj.timestamp}}</div>
+<div class="article-info">{{obj.id}}</div>
+<div class="controls">
+	<a href="/posts/{{post.id}}/delete/">Удалить</a>
+	<a href="/posts/{{post.id}}/edit/">Редактировать</a>
+</div>
 
 {% endfor %}
-
-<ul>
-{% for post in object_list %}
-    <li> <Font color = "#D2691E"  face="segoe script" > {{ post.title }}</Font> <Font color = "#CFCFCF"> <a href="/posts/{{post.id}}/delete/">Удалить</a> / <a href="/posts/{{post.id}}/edit/">Редактировать</a> </li>
-{% endfor %}
-</ul>
 
 <ul>   <li><a href="/posts/create"> <Font color = "#D2691E"  face="segoe script"> Создать статью </Font> </a> </li> </ul>
 

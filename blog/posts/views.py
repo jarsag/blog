@@ -60,7 +60,7 @@ def post_delete(request, id=None):
     # messages.success(request, "Deleted")
     return redirect("posts:list")
 
-def comm_delete(request, pk=None):
+def comm_delete(request, id, pk=None):
     comme = get_object_or_404(Commentario, pk=pk)
     comme.delete()
     # messages.success(request, "Deleted")
