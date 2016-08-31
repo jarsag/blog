@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
 	</head>
 
-	<body style="background-color:#FFFFF0">
+	<body>
 
 {% if messages %}
 <ul class="messages">
@@ -15,8 +15,10 @@
     {% endfor  %}
 </ul>
 {% endif  %}
-<h1 style="background-color:#D2691E"> <Font color = "#FFFFFF" face="segoe script"> {{ title }} </Font>  </h1>
 
+<div class="arthead">
+    <h1>{{ title }}  </h1>
+</div>
 <!--
 	<div>
 		<img src="{% static "posts/images/article.jpg" %}">
@@ -25,14 +27,15 @@
 
 <div class="article-image"></div>
 
-<Font color = "#D2691E" size="5 " face="segoe script"> {{post.content}} </Font> </br>
-<Font color = "#CFCFCF"> Редактировано: {{post.updated}}</Font></br>
-<Font color = "#CFCFCF"> Опубликовано: {{post.timestamp}}</Font></br>
-<Font color = "#CFCFCF">{{post.id}}</Font></br>
+<div class="artname"> {{post.content}} </div>
+<div class="article-info"> Редактировано: {{post.updated}}</div>
+<div class="article-info"> Опубликовано: {{post.timestamp}}</div>
+<div class="article-info">{{post.id}}</div>
 
 <ul>
 {% for comment in comments %}
-    <li>{{ comment.commfield }} <a href="/posts/{{post.id}}/comment/{{comment.pk}}/delete/">Удалить</a></li>
+    <div class="comme">{{ comment.commfield }}</div>
+    <div class="article-info"> <a href="/posts/{{post.id}}/comment/{{comment.pk}}/delete/">Удалить</a> </div>
 {% endfor %}
 </ul>
 

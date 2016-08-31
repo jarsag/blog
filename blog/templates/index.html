@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
 </head>
 
-<body>
+<br>
 
 <h1 class="main-header">Тестовый блог</h1>
 <!--{% load staticfiles %}-->
@@ -18,19 +18,22 @@
 
 {% for obj in object_list %}
 <!--{% url "posts:detail" id=obj.id %}-->
-<a href='{{obj.get_absolute_url}}'> <Font color = "#D2691E" face="segoe script" size = "5"> {{obj.title}} </Font> </a>  </br>
+<div class="art">  <a href='{{obj.get_absolute_url}}'> {{obj.title}}</a> </div>
 <!--{{obj.content}}</br>-->
-<div class="article-info">Редактировано: {{obj.updated}}</div>
-<div class="article-info">Опубликовано: {{obj.timestamp}}</div>
+<div class="article-info"> Редактировано: {{obj.updated}}</div>
+<div class="article-info"> Опубликовано: {{obj.timestamp}}</div>
 <div class="article-info">{{obj.id}}</div>
 <div class="controls">
 	<a href="/posts/{{post.id}}/delete/">Удалить</a>
 	<a href="/posts/{{post.id}}/edit/">Редактировать</a>
 </div>
+</br>
 
 {% endfor %}
 
-<ul>   <li><a href="/posts/create"> <Font color = "#D2691E"  face="segoe script"> Создать статью </Font> </a> </li> </ul>
+<ul>
+	<div class="art">  <a href="/posts/create">  Создать статью  </a> </div>
+</ul>
 
 </body>
 

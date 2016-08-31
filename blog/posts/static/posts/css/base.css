@@ -1,5 +1,5 @@
 body {
-	background-color: #FFFFF0;
+	background-color: #FFFAF0;
 }
 
 .main-header {
@@ -18,4 +18,56 @@ body {
 	width: 427px;
 	height: 281px;
 	background: url('/static/posts/images/article.jpg')
+}
+
+.art {
+    color: #D2691E;
+    font-family: "segoe script";
+    font-size: 20px
+
+}
+
+.arthead{
+    font-family: "segoe script";
+    font-size: 25px;
+    background-color: #D2691E;
+    padding: 1px;
+    color: #FFFFFF
+}
+
+.artname {
+    color: #D2691E;
+    font-family: "segoe script";
+    font-size: 35px
+    }
+.comm{
+    color: #D2691E;
+    font-family: "segoe script";
+    border-top-style: double;
+    border-right-style: double;
+    border-bottom-style: double;
+    border-left-style: double;
+    height: 2em;
+    background-color: #FFFFFF;
+    display: block
+
+}
+
+.comme{
+  color: #D2691E;
+  font-family: "segoe script";
+  border-style: double;
+  border-color: rgb(34, 34, 34);
+  border-top-width: 3px;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+  background-color: #FFFFFF;
+  display: inline
+}
+
+.bg{
+    width: 427px;
+	height: 281px;
+	background: url('/static/posts/images/хэд.png')
 }
