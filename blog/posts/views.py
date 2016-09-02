@@ -54,13 +54,19 @@ def post_updated(request, id=None):
 }
     return render(request, "post_form.html", context)
 
-def p_delete(request, id=None):
-    ps = get_object_or_404(Post, id=id)
-    ps.delete()
+def post_delete(request, id=None):
+    instance = get_object_or_404(Post, id=id)
+    instance.delete()
     # messages.success(request, "Deleted")
     return redirect("posts:list")
 
-def comm_delete(request, num, pk=None):
+def api_post_delete(request):
+    instance = get_object_or_404(Post, id=int(request.GET['post_id']))
+    instance.delete()
+    
+    return HttpResponse('Ok')
+
+def comm_delete(request, id, pk=None):
     comme = get_object_or_404(Commentario, pk=pk)
     comme.delete()
     # messages.success(request, "Deleted")
@@ -90,7 +96,7 @@ def comm_create(request, id=None):
     return render(request, "comm_form.html", context)
 
 def comm_detail(request, id=None):
-    post = get_object_or_404(Commentario, id=id)
+    instance = get_object_or_404(Commentario, id=id)
     context = {
                "instance": instance,
     }

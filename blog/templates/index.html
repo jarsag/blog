@@ -4,9 +4,40 @@
 
 <head>
 	<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
+	<script src="{% static "posts/js/jquery-3.1.0.min.js" %}"></script>
+	<script>
+    $( document ).ready(function() {
+        $("a.remove-link").click(function( event ) {
+//            alert( "Link pressed" );
+            event.preventDefault();
+        
+	        var post_id = $(this).parent().parent().attr('id');
+	        
+//	        $.get(
+//	        	"/posts/api/delete/",
+//	        	{'post_id': post_id},
+//	        function( result ) {
+//			      console.log('success!!!');
+//			      $('div#' + post_id).remove();
+//		    });
+	        
+			$.ajax({
+			  url: "/posts/api/delete/",
+			  data: {
+			  	  'post_id': post_id
+			  },
+			  success: function( result ) {
+			      console.log('success!!!');
+			      $('div#' + post_id).remove();
+			  }
+			});
+            
+        });
+    });
+	</script>
 </head>
 
-<br>
+<body>
 
 <h1 class="main-header">Тестовый блог</h1>
 <!--{% load staticfiles %}-->
@@ -18,22 +49,21 @@
 
 {% for obj in object_list %}
 <!--{% url "posts:detail" id=obj.id %}-->
-<div class="art">  <a href='{{obj.get_absolute_url}}'> {{obj.title}}</a> </div>
-<!--{{obj.content}}</br>-->
-<div class="article-info"> Редактировано: {{obj.updated}}</div>
-<div class="article-info"> Опубликовано: {{obj.timestamp}}</div>
-<div class="article-info">{{obj.id}}</div>
-<div class="controls">
-	<a href="/posts/{{post.id}}/delete/">Удалить</a>
-	<a href="/posts/{{post.id}}/edit/">Редактировать</a>
-</div>
-</br>
+<div id="{{obj.id}}">
+	<a href='{{obj.get_absolute_url}}'> <Font color = "#D2691E" face="segoe script" size = "5"> {{obj.title}} </Font> </a>  </br>
+	<!--{{obj.content}}</br>-->
+	<div class="article-info">Редактировано: {{obj.updated}}</div>
+	<div class="article-info">Опубликовано: {{obj.timestamp}}</div>
+	<div class="article-info">{{obj.id}}</div>
+	<div class="controls">
+		<a class="remove-link" href="">Удалить</a>
+		<a href="/posts/{{obj.id}}/edit/">Редактировать</a>
+	</div>
+<div>
 
 {% endfor %}
 
-<ul>
-	<div class="art">  <a href="/posts/create">  Создать статью  </a> </div>
-</ul>
+<ul>   <li><a href="/posts/create"> <Font color = "#D2691E"  face="segoe script"> Создать статью </Font> </a> </li> </ul>
 
 </body>
 
