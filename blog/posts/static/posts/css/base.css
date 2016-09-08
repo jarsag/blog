@@ -1,73 +1,7 @@
-body {
-	background-color: #FFFAF0;
+.navigation {
+    float: left;
 }
 
-.main-header {
-	background-color: #D2691E;
-	color: #FFFFFF;
-	font-family: "segoe script";
-	font-size: 38px;
-	padding: 10px;
-}
-
-.article-info {
-	color: #CFCFCF;
-}
-
-.article-image {
-	width: 427px;
-	height: 281px;
-	background: url('/static/posts/images/article.jpg')
-}
-
-.art {
-    color: #D2691E;
-    font-family: "segoe script";
-    font-size: 20px
-
-}
-
-.arthead{
-    font-family: "segoe script";
-    font-size: 25px;
-    background-color: #D2691E;
-    padding: 1px;
-    color: #FFFFFF
-}
-
-.artname {
-    color: #D2691E;
-    font-family: "segoe script";
-    font-size: 35px
-    }
-.comm{
-    color: #D2691E;
-    font-family: "segoe script";
-    border-top-style: double;
-    border-right-style: double;
-    border-bottom-style: double;
-    border-left-style: double;
-    height: 2em;
-    background-color: #FFFFFF;
-    display: block
-
-}
-
-.comme{
-  color: #D2691E;
-  font-family: "segoe script";
-  border-style: double;
-  border-color: rgb(34, 34, 34);
-  border-top-width: 3px;
-  border-right-width: 3px;
-  border-bottom-width: 3px;
-  border-left-width: 3px;
-  background-color: #FFFFFF;
-  display: inline
-}
-
-.bg{
-    width: 427px;
-	height: 281px;
-	background: url('/static/posts/images/хэд.png')
+.posts__container {
+    margin-left: 150px;
 }

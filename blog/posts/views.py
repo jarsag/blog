@@ -61,10 +61,24 @@ def post_delete(request, id=None):
     return redirect("posts:list")
 
 def api_post_delete(request):
-    instance = get_object_or_404(Post, id=int(request.GET['post_id']))
-    instance.delete()
-    
+    post = get_object_or_404(Post, id=int(request.GET['post_id']))
+    post.delete()
+
     return HttpResponse('Ok')
+
+
+def api_comm_delete(request):
+    comment = get_object_or_404(Commentario, id=int(request.GET['comm_id']))
+    comment.delete()
+
+    return HttpResponse('Ok')
+
+
+# def api_comm_delete(request):
+#     comm = get_object_or_404 (Commentario, pk=int(request.GET['comm_id']))
+#     comm.delete()
+
+    # return HttpResponse('Ok')
 
 def comm_delete(request, id, pk=None):
     comme = get_object_or_404(Commentario, pk=pk)

@@ -8,18 +8,11 @@
 	<script>
     $( document ).ready(function() {
         $("a.remove-link").click(function( event ) {
-//            alert( "Link pressed" );
             event.preventDefault();
         
 	        var post_id = $(this).parent().parent().attr('id');
 	        
-//	        $.get(
-//	        	"/posts/api/delete/",
-//	        	{'post_id': post_id},
-//	        function( result ) {
-//			      console.log('success!!!');
-//			      $('div#' + post_id).remove();
-//		    });
+	    });
 	        
 			$.ajax({
 			  url: "/posts/api/delete/",
@@ -40,30 +33,34 @@
 <body>
 
 <h1 class="main-header">Тестовый блог</h1>
-<!--{% load staticfiles %}-->
-<!--<img src="{% static "blog/1.jpg" %}"/>-->
 
-<!--<h1>-->
-<!--<Font color = "#D2691E" size="21 " face="segoe script"> <I> Тестовый блог </I> </Font>-->
-<!--</h1>-->
-
+<nav class="navigation">
 {% for obj in object_list %}
-<!--{% url "posts:detail" id=obj.id %}-->
-<div id="{{obj.id}}">
-	<a href='{{obj.get_absolute_url}}'> <Font color = "#D2691E" face="segoe script" size = "5"> {{obj.title}} </Font> </a>  </br>
-	<!--{{obj.content}}</br>-->
-	<div class="article-info">Редактировано: {{obj.updated}}</div>
-	<div class="article-info">Опубликовано: {{obj.timestamp}}</div>
-	<div class="article-info">{{obj.id}}</div>
-	<div class="controls">
-		<a class="remove-link" href="">Удалить</a>
-		<a href="/posts/{{obj.id}}/edit/">Редактировать</a>
+	<div id="{{obj.id}}">
+		<div class=""><a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div> </br>
 	</div>
-<div>
-
 {% endfor %}
+</nav>
 
-<ul>   <li><a href="/posts/create"> <Font color = "#D2691E"  face="segoe script"> Создать статью </Font> </a> </li> </ul>
+<div class="posts__container">
+{% for obj in object_list %}
+	<div id="{{obj.id}}">
+		<div class="artname"><a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div> </br>
+		<div class="">Редактировано: {{obj.updated}}</div>
+		<div class="article-info">Опубликовано: {{obj.timestamp}}</div>
+		<div class="">
+			<a class="remove-link" href="">Удалить</a>
+			<a href="/posts/{{obj.id}}/edit/">Редактировать</a>
+		</div>
+	</div>
+{% endfor %}
+</div>
+
+<div class="posts__controls">
+	<a href="/posts/create"> Создать статью </a>
+</div>
+
+
 
 </body>
 

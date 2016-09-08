@@ -4,19 +4,42 @@
 
 	<head>
 		<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
-	</head>
+	<script src="{% static "posts/js/jquery-3.1.0.min.js" %}"></script>
+	<script>
+    $( document ).ready(function() {
+        $("a.remove-link").click(function( event ) {
+            event.preventDefault();
+
+	        var comm_id = $(this).attr('id');
+
+			$.ajax({
+			  url: "/posts/api/commdelete/",
+			  data: {
+			  	  'comm_id': comm_id
+			  },
+			  success: function( result ) {
+			      console.log('success!!!');
+			      $('a#' + comm_id).parent().parent().remove();
+			  }
+			});
+
+        });
+    });
+	</script>
+</head>
+
 
 	<body>
 
 {% if messages %}
-<ul class="messages">
+<ul class="">
     {%for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message  }}</li>
     {% endfor  %}
 </ul>
 {% endif  %}
 
-<div class="arthead">
+<div class="">
     <h1>{{ title }}  </h1>
 </div>
 <!--
@@ -25,30 +48,30 @@
 	</div>
 -->
 
-<div class="article-image"></div>
-
-<div class="artname"> {{post.content}} </div>
-<div class="article-info"> Редактировано: {{post.updated}}</div>
-<div class="article-info"> Опубликовано: {{post.timestamp}}</div>
-<div class="article-info">{{post.id}}</div>
+<!--<div class="article-image"></div>-->
+<div class=""> {{post.content}} </div>
+<div class=""> Редактировано: {{post.updated}}</div>
+<div class=""> Опубликовано: {{post.timestamp}}</div>
+<!--<div class="article-info">{{post.id}}</div>-->
 
 <ul>
 {% for comment in comments %}
-    <div class="comme">{{ comment.commfield }}</div>
-    <div class="article-info"> <a href="/posts/{{post.id}}/comment/{{comment.pk}}/delete/">Удалить</a> </div>
+    <div>
+        <div class="">{{ comment.commfield }}</div>
+        <div class=""> <a id="{{ comment.id }}" class="remove-link" href="">Удалить</a> </div>
+    </div>
 {% endfor %}
 </ul>
 
-
+<div class="">
 <form method='POST' action='/posts/{{post.id}}/comment/'>{% csrf_token %}
 {{ form.as_p  }}
 
 <input type='submit' value = 'Комментировать'/>
 </form>
+</div>
 
-<ul>
-  <li> <a href="/posts/"> <Font color = "#D2691E" face="segoe script"> Назад </Font> </a></li>
-</ul>
+  <div class=""> <a href="/posts/">  Назад  </a> </div>
 
 
 <!-- <a href="/posts/{{post.id}}/comment/">Добавить комментарий</a> -->
