@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Post, Commentario
+from .models import Post, Commentario, Prev
 from .forms import PostForm,CommentarioForm
 from django.contrib import messages
 
@@ -21,8 +21,10 @@ def post_create(request):
 
 def post_detail(request, id=None):
     post = get_object_or_404(Post, id=id)
+    queryset = Post.objects.all()
     context = {
     	"title": post.title,
+        "object_list": queryset,
     	"post": post,
         "comments": post.comments.all(),
         "form": CommentarioForm(request.POST or None)}
@@ -31,9 +33,12 @@ def post_detail(request, id=None):
 
 def post_list(request):
     queryset = Post.objects.all()
+    prevset = Prev.objects.all()
     context = {
 	"object_list": queryset,
+    "prev": prevset,
 	"title": "My List"
+
 }
 
     return render(request, "index.html", context)
@@ -42,23 +47,25 @@ def post_updated(request, id=None):
     instance = get_object_or_404(Post, id=id)
     form = PostForm(request.POST or None, instance=instance)
     if form.is_valid():
-	instance = form.save(commit=False)
-	instance.save()
-	# messages.success(request, "Saved")
-	return HttpResponseRedirect(instance.get_absolute_url())
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
 
+    queryset = Post.objects.all()
     context = {
-	"title": instance.title,
-	"instance": instance,
-	"form": form,
-}
+            "object_list": queryset,
+	        "title": instance.title,
+	        "instance": instance,
+	        "form": form,
+     }
     return render(request, "post_form.html", context)
 
+
 def post_delete(request, id=None):
-    instance = get_object_or_404(Post, id=id)
-    instance.delete()
+        instance = get_object_or_404(Post, id=id)
+        instance.delete()
     # messages.success(request, "Deleted")
-    return redirect("posts:list")
+        return redirect("posts:list")
 
 def api_post_delete(request):
     post = get_object_or_404(Post, id=int(request.GET['post_id']))
@@ -72,13 +79,6 @@ def api_comm_delete(request):
     comment.delete()
 
     return HttpResponse('Ok')
-
-
-# def api_comm_delete(request):
-#     comm = get_object_or_404 (Commentario, pk=int(request.GET['comm_id']))
-#     comm.delete()
-
-    # return HttpResponse('Ok')
 
 def comm_delete(request, id, pk=None):
     comme = get_object_or_404(Commentario, pk=pk)
@@ -116,3 +116,4 @@ def comm_detail(request, id=None):
     }
 
     return render(request, "post_detail.html", context)
+

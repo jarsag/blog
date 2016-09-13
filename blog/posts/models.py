@@ -8,6 +8,7 @@ class Post(models.Model):
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
+
     def __unicode__(self):
         return self.title
 
@@ -26,4 +27,9 @@ class Commentario(models.Model):
          return reverse("posts:detail", kwargs={"id": self.id})
 
 
+class Prev(models.Model):
+    prev = models.CharField(max_length=120)
+    heh = models.ForeignKey(Post, null=True, related_name="preview")
 
+    def __unicode__(self):
+        return self.prev

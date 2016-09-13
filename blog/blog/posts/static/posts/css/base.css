@@ -1,0 +1,21 @@
+body {
+	background-color: #FFFFF0;
+}
+
+.main-header {
+	background-color: #D2691E;
+	color: #FFFFFF;
+	font-family: "segoe script";
+	font-size: 38px;
+	padding: 10px;
+}
+
+.article-info {
+	color: #CFCFCF;
+}
+
+.article-image {
+	width: 427px;
+	height: 281px;
+	background: url('/static/posts/images/article.jpg')
+}

@@ -3,6 +3,7 @@
 <html>
 
 	<head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
 	<script src="{% static "posts/js/jquery-3.1.0.min.js" %}"></script>
 	<script>
@@ -28,54 +29,83 @@
 	</script>
 </head>
 
-
-	<body>
-
-{% if messages %}
-<ul class="">
-    {%for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message  }}</li>
-    {% endfor  %}
-</ul>
-{% endif  %}
-
-<div class="">
-    <h1>{{ title }}  </h1>
-</div>
-<!--
-	<div>
-		<img src="{% static "posts/images/article.jpg" %}">
-	</div>
--->
-
-<!--<div class="article-image"></div>-->
-<div class=""> {{post.content}} </div>
-<div class=""> Редактировано: {{post.updated}}</div>
-<div class=""> Опубликовано: {{post.timestamp}}</div>
-<!--<div class="article-info">{{post.id}}</div>-->
-
-<ul>
-{% for comment in comments %}
-    <div>
-        <div class="">{{ comment.commfield }}</div>
-        <div class=""> <a id="{{ comment.id }}" class="remove-link" href="">Удалить</a> </div>
+<body>
+<div id="pagewidth">
+    <div id="header">
+			<h1 id="logo">Учебный блог </h1>
+			<h2 id="slogan">на автоматик</h2>
     </div>
-{% endfor %}
-</ul>
 
-<div class="">
-<form method='POST' action='/posts/{{post.id}}/comment/'>{% csrf_token %}
-{{ form.as_p  }}
+<div id="wrapper" class="clearfix">
+    <div id="twocols" class="clearfix">
+        <div id="maincol">
+            <h1>Навигация</h1>
+            <div id="navcontainer">
+                <ul id="navlist">
+                    <li><a href="/posts">На главную</a></li>
+                    <li id="active"> {% for obj in object_list %}
+                        <div id="{{obj.pk}}">
+                            <div class=""><a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div>
+                        </div>
+                        {% endfor %}
+                    </li>
+                    <li><a href="/posts/create"> Создать статью </a></li>
+                </ul>
+            </div>
+                <h2>Источники</h2>
+                <ul>
+                    <li><a href="http://djbook.ru/" id="current">Django book</a></li>
+                    <li><a href="http://djbook.ru/rel1.9/">Документация Django 1.9</a></li>
+                    <li><a href="http://ru.html.net/tutorials/css/">Учебник Css</a></li>
+                    <li><a href="https://ru.wikipedia.org/wiki/%D0%91%D0%BB%D0%BE%D0%B3">Wikipedia/Блог</a></li>
+                    <li>SAMPLE TEXT</li>
+                    <img src="/static/posts/images/129.png">
+                </ul>
 
-<input type='submit' value = 'Комментировать'/>
-</form>
+        </div>
+
+        <div id="rightcol">
+                 <h1>{{ title }}  </h1>
+                    <div class=""> Редактировано: {{post.updated}}</div>
+                    <div class=""> Опубликовано: {{post.timestamp}}</div> </br>
+
+                <div > {{post.content}} </div>
+
+
+
+                {% for comment in comments %}
+                    <div>
+                        <div class="">{{ comment.commfield }}</div>
+                        <div class=""> <a id="{{ comment.id }}" class="remove-link" href="">Удалить</a> </div>
+                    </div>
+                {% endfor %}
+
+
+                <div class="">
+                    <form method='POST' action='/posts/{{post.id}}/comment/'>{% csrf_token %}
+                         {{ form.as_p  }}
+                         <input type='submit' value = 'Комментировать'/>
+                    </form>
+                </div>
+        </div>
+    </div>
+    <div id="leftcol">
+			  <h2>Добро пожаловать</h2>
+			  <div class="box">
+				<blockquote>Создано честно, собственными руками. Код 100% мой. Написано на Django 1.9 с незначительным использованием AJAX. Исключительно в учебных целях.</blockquote>
+			  </div>
+			  <h2>Кто я такой!? (Не твое дело)</h2>
+			  <p><img class="imgleft" src="/static/posts/images/128.png" alt="" /> Я, Загоскин Ярослав Сергеевич, 1995 года рождения. Учусь в Высшей Школе Электроники и Компьютерных Наук (бывш. КТУР (бывш. ПС)) - сегменте Южно-Уральского Государственного Университета (бывш. ЧПИ). Долгов не умею. Не женат.</p>
+			  <div class="clear">&nbsp;</div>
+			  <div class="box">
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam nibh leo, gravida hendrerit, aliquam eget, placerat eget, diam. Nullam facilisis iaculis nulla. Quisque gravida leo. Praesent sem nibh, imperdiet vel, pulvinar nec, eleifend non, arcu. Duis laoreet semper lectus. Phasellus tristique ultricies leo. Cras turpis. Curabitur feugiat. Nunc vitae leo et odio auctor congue. Aenean et pede sit amet risus dapibus ullamcorper.</p>
+			  </div>
+			</div>
+
+    <div id="footer">
+    <p><a href="/posts">На главную</a> | <a href="https://vk.com/object416">Создатель</a> | &copy; 2016 Загоскин Ярослав Сергеевич, КЭ-436  </p>
+  </div>
 </div>
-
-  <div class=""> <a href="/posts/">  Назад  </a> </div>
-
-
-<!-- <a href="/posts/{{post.id}}/comment/">Добавить комментарий</a> -->
-
 </body>
 
 </html>

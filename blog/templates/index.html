@@ -3,7 +3,8 @@
 <html>
 
 <head>
-	<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<link rel="stylesheet" href="{% static "posts/css/base.css" %}"  type="text/css">
 	<script src="{% static "posts/js/jquery-3.1.0.min.js" %}"></script>
 	<script>
     $( document ).ready(function() {
@@ -12,7 +13,7 @@
         
 	        var post_id = $(this).parent().parent().attr('id');
 	        
-	    });
+
 	        
 			$.ajax({
 			  url: "/posts/api/delete/",
@@ -28,40 +29,81 @@
         });
     });
 	</script>
+
 </head>
 
 <body>
+<div id="pagewidth">
+		 <div id="header">
+			<h1 id="logo"><a href="/posts">Учебный блог</a> </h1>
+			<h2 id="slogan">на автоматик</h2>
+		  </div>
+<div id="wrapper" class="clearfix">
+    <div id="twocols" class="clearfix">
+		 <div id="maincol">
+				<h1>Навигация</h1>
+				<div id="navcontainer">
+					<ul id="navlist">
+						 <li id="active"><a href="/posts">На главную</a></li>
+						 <li> {% for obj in object_list %}
+							<div id="{{obj.pk}}">
+								<div class=""><a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div>
+							</div>
+						{% endfor %}
+						</li>
+						<li><a href="/posts/create"> Создать статью </a></li>
+					</ul>
+				</div>
+			 <h2>Источники</h2>
+					<ul>
+						<li><a href="http://djbook.ru/" id="current">Django book</a></li>
+						<li><a href="http://djbook.ru/rel1.9/">Документация Django 1.9</a></li>
+						<li><a href="http://ru.html.net/tutorials/css/">Учебник Css</a></li>
+						<li><a href="https://ru.wikipedia.org/wiki/%D0%91%D0%BB%D0%BE%D0%B3">Wikipedia/Блог</a></li>
+						<li>SAMPLE TEXT</li>
+						<img src="/static/posts/images/129.png">
+					</ul>
 
-<h1 class="main-header">Тестовый блог</h1>
-
-<nav class="navigation">
-{% for obj in object_list %}
-	<div id="{{obj.id}}">
-		<div class=""><a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div> </br>
-	</div>
-{% endfor %}
-</nav>
-
-<div class="posts__container">
-{% for obj in object_list %}
-	<div id="{{obj.id}}">
-		<div class="artname"><a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div> </br>
-		<div class="">Редактировано: {{obj.updated}}</div>
-		<div class="article-info">Опубликовано: {{obj.timestamp}}</div>
-		<div class="">
-			<a class="remove-link" href="">Удалить</a>
-			<a href="/posts/{{obj.id}}/edit/">Редактировать</a>
 		</div>
-	</div>
-{% endfor %}
+
+	 <div id="rightcol">
+		 <h2>Статьи</h2>
+			{% for obj in object_list %}
+				<div id="{{obj.id}}">
+					<div class="post__title"><a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div>
+							{% for obj in prev %} <div> {{obj.prev}}  </div> {% endfor %}
+
+					<div class="">
+						<a class="remove-link" href="">Удалить</a>
+						<a href="/posts/{{obj.id}}/edit/">Редактировать</a>
+					</div>
+
+				</div>
+		 <p class="post"> <a href="/posts/{{obj.id}}/" class="readmore">Читать далее</a> <span class="date">Опубликовано: {{obj.timestamp}} | Редактировано: {{obj.updated}}</span> </p>
+	 		{% endfor %}
+	 </div>
+
+
+		</div>
+
+		<div id="leftcol">
+			  <h2>Добро пожаловать</h2>
+				  <div class="box">
+					<blockquote>Создано честно, собственными руками. Код 100% мой. Написано на Django 1.9 с незначительным использованием AJAX. Исключительно в учебных целях.</blockquote>
+				  </div>
+			  <h2>Кто я такой!? (Не твое дело)</h2>
+			  <p><img class="imgleft" src="/static/posts/images/128.png" alt="" /> Я, Загоскин Ярослав Сергеевич, 1995 года рождения. Учусь в Высшей Школе Электроники и Компьютерных Наук (бывш. КТУР (бывш. ПС)) - сегменте Южно-Уральского Государственного Университета (бывш. ЧПИ). Долгов не умею. Не женат.</p>
+			  <div class="clear">&nbsp;</div>
+			  <div class="box">
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam nibh leo, gravida hendrerit, aliquam eget, placerat eget, diam. Nullam facilisis iaculis nulla. Quisque gravida leo. Praesent sem nibh, imperdiet vel, pulvinar nec, eleifend non, arcu. Duis laoreet semper lectus. Phasellus tristique ultricies leo. Cras turpis. Curabitur feugiat. Nunc vitae leo et odio auctor congue. Aenean et pede sit amet risus dapibus ullamcorper.</p>
+			  </div>
+		</div>
+
 </div>
-
-<div class="posts__controls">
-	<a href="/posts/create"> Создать статью </a>
+<div id="footer">
+    <p><a href="/posts">На главную</a> | <a href="https://vk.com/object416">Создатель</a> | &copy; 2016 Загоскин Ярослав Сергеевич, КЭ-436  </p>
+  </div>
 </div>
-
-
-
 </body>
 
 

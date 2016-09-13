@@ -10,7 +10,8 @@ from .views import(
     comm_detail,
    # comm_delete,
     api_post_delete,
-    api_comm_delete
+    api_comm_delete,
+    # navi_list
 )
 
 urlpatterns = [
@@ -23,7 +24,7 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/$', comm_detail, name='detail'),
    # url(r'^(?P<id>\d+)/comment/(?P<pk>\d+)/delete/$', comm_delete),
 #	url(r'^posts/$', "<appname>.views.<function>")
-    
+    # url(r'^(?P<id>\d+)/$', navi_list,),
     url(r'^api/delete/$', api_post_delete),
     url(r'^api/commdelete/$', api_comm_delete)
 ]

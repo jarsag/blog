@@ -1,0 +1,21 @@
+ 
+<html>
+
+<body style="background-color:#FFFFF0">
+
+<h1 style="background-color:#D2691E"> <Font color = "#FFFFFF" face="segoe script"> Создать / Редактирвать </Font>  </h1>
+
+<form method='POST'action=''>{% csrf_token %}
+{{ form.as_p  }}
+
+<input type='submit' value = 'Отправить'/>
+</form>
+
+<ul>
+  <li> <a href="/posts/"> <Font color = "#D2691E" face="segoe script"> Назад </Font> </a></li>
+</ul>
+
+</body>
+
+
+</html>

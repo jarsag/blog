@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Commentario
+from .models import Post, Commentario, Prev
 
 
 class PostModelAdmin(admin.ModelAdmin):
@@ -18,9 +18,19 @@ class CommentarioModelAdmin(admin.ModelAdmin):
     class Meta:
         model = Commentario
 
+class PrevModelAdmin(admin.ModelAdmin):
+    list_display = ["prev"]
+
+    class Meta:
+        model = Prev
+
+
 admin.site.register(Commentario, CommentarioModelAdmin)
 
 
 admin.site.register(Post, PostModelAdmin)
+
+admin.site.register(Prev, PrevModelAdmin)
+
 
 # Register your models here.

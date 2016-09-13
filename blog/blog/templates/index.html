@@ -1,0 +1,38 @@
+{% load staticfiles %}
+ 
+<html>
+
+<head>
+	<link rel="stylesheet" href="{% static "posts/css/base.css" %}">
+</head>
+
+<body>
+
+<h1 class="main-header">Тестовый блог</h1>
+<!--{% load staticfiles %}-->
+<!--<img src="{% static "blog/1.jpg" %}"/>-->
+
+<!--<h1>-->
+<!--<Font color = "#D2691E" size="21 " face="segoe script"> <I> Тестовый блог </I> </Font>-->
+<!--</h1>-->
+
+{% for obj in object_list %}
+<!--{% url "posts:detail" id=obj.id %}-->
+<a href='{{obj.get_absolute_url}}'> <Font color = "#D2691E" face="segoe script" size = "5"> {{obj.title}} </Font> </a>  </br>
+<!--{{obj.content}}</br>-->
+<div class="article-info">Редактировано: {{obj.updated}}</div>
+<div class="article-info">Опубликовано: {{obj.timestamp}}</div>
+<div class="article-info">{{obj.id}}</div>
+<div class="controls">
+	<a href="/posts/{{post.id}}/delete/">Удалить</a>
+	<a href="/posts/{{post.id}}/edit/">Редактировать</a>
+</div>
+
+{% endfor %}
+
+<ul>   <li><a href="/posts/create"> <Font color = "#D2691E"  face="segoe script"> Создать статью </Font> </a> </li> </ul>
+
+</body>
+
+
+</html>
