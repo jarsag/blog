@@ -243,7 +243,20 @@ margin: 0 15px 0 5px;
 			/*IMAGES*/
 .imgleft {
 float : left;
-border : 1px solid #333;
+
 margin : 5px 10px 10px 0;
 padding : 5px;
+}
+
+.imgright {
+float : right;
+
+margin : 5px 10px 10px 0;
+padding : 5px;
+}
+
+.imr{
+float : right;
+margin : 5px 10px 10px 0;
+
 }
