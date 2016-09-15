@@ -58,7 +58,8 @@
                     <li><a href="http://djbook.ru/rel1.9/">Документация Django 1.9</a></li>
                     <li><a href="http://ru.html.net/tutorials/css/">Учебник Css</a></li>
                     <li><a href="https://ru.wikipedia.org/wiki/%D0%91%D0%BB%D0%BE%D0%B3">Wikipedia/Блог</a></li>
-                    <li>SAMPLE TEXT</li>
+                    <li><a href="http://init.susu.ru/">Кафедра ИнИТ</a></li>
+                    <li><a href="https://www.susu.ru/">ЮУрГУ</a></li>
                     <li>SAMPLE TEXT</li>
                     <li>SAMPLE TEXT</li>
                     <li>SAMPLE TEXT</li>
@@ -72,15 +73,17 @@
                     <div class=""> Редактировано: {{post.updated}}</div>
                     <div class=""> Опубликовано: {{post.timestamp}}</div> </br>
 
-                <div > {{post.content}} </div>
+                <div > {{post.content}} </div></br>
 
 
 
                 {% for comment in comments %}
                     <div>
-                        <div class="">{{ comment.commfield }}</div>
+                        <div class="user"> {{comment.name}} </div>
+                        <div class="comm__field">{{ comment.commfield }}</div>
+                       <div class="post"> <span class="date"> {{comment.pubdate}}</span></div>
                         <div class=""> <a id="{{ comment.id }}" class="remove-link" href="">Удалить</a> </div>
-                    </div>
+                    </div></br>
                 {% endfor %}
 
 

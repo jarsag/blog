@@ -33,10 +33,10 @@ def post_detail(request, id=None):
 
 def post_list(request):
     queryset = Post.objects.all()
-    prevset = Prev.objects.all()
+    # prevset = Prev.objects.all()
     context = {
 	"object_list": queryset,
-    "prev": prevset,
+    # "prev": prevset,
 	"title": "My List"
 
 }

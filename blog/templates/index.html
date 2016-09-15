@@ -60,7 +60,8 @@
 						<li><a href="http://djbook.ru/rel1.9/">Документация Django 1.9</a></li>
 						<li><a href="http://ru.html.net/tutorials/css/">Учебник Css</a></li>
 						<li><a href="https://ru.wikipedia.org/wiki/%D0%91%D0%BB%D0%BE%D0%B3">Wikipedia/Блог</a></li>
-						<li>SAMPLE TEXT</li>
+						<li><a href="http://init.susu.ru/">Кафедра ИнИТ</a></li>
+						<li><a href="https://www.susu.ru/">ЮУрГУ</a></li>
 						<li>SAMPLE TEXT</li>
 						<li>SAMPLE TEXT</li>
 						<li>SAMPLE TEXT</li>
@@ -74,7 +75,9 @@
 			{% for obj in object_list %}
 				<div id="{{obj.id}}">
 					<div class="post__title"><a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div>
-							{% for obj in prev %} <div> {{obj.prev}}  </div> {% endfor %}
+					<div>{{obj.prev}}<a href="/posts/{{obj.id}}/">...читать далее</a></div>
+
+							<!--{% for obj in prev %} <div> {{obj.prev}}  </div> {% endfor %}-->
 
 					<div class="">
 						<a class="remove-link" href="">Удалить</a>
@@ -82,13 +85,13 @@
 					</div>
 
 				</div>
-		 <p class="post"> <a href="/posts/{{obj.id}}/" class="readmore">Читать далее</a> <span class="date">Опубликовано: {{obj.timestamp}} | Редактировано: {{obj.updated}}</span> </p>
-	 		{% endfor %}
+		 <p class="post"> <a href="/posts/{{obj.id}}/" class="readmore">Читать дальше</a> <span class="date">Опубликовано: {{obj.timestamp}} | Редактировано: {{obj.updated}}</span> </p>
+	 		</br>{% endfor %}
 		 <div><img class="imr" src="/static/posts/images/145.png"></div>
 	 </div>
 
-
 		</div>
+
 
 		<div id="leftcol">
 			  <h1>Добро пожаловать </br> <img class="imr" src="/static/posts/images/131.png"> </h1>

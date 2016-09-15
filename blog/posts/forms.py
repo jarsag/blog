@@ -18,5 +18,6 @@ class CommentarioForm(forms.ModelForm):
 	class Meta:
 		model = Commentario
 		fields = [
+			"name",
 	 	    "commfield",
 ]

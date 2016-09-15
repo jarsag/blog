@@ -260,3 +260,17 @@ float : right;
 margin : 5px 10px 10px 0;
 
 }
+
+.user{
+
+font-style : italic;
+color : #b29b35;
+
+}
+
+.comm__field{
+
+    background: #FFFFFF;
+    padding: 10px;
+
+}

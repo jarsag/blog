@@ -7,7 +7,7 @@ class Post(models.Model):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
+    prev = models.TextField( default="Preview")
 
     def __unicode__(self):
         return self.title
@@ -16,9 +16,11 @@ class Post(models.Model):
         return reverse("posts:detail", kwargs={"id": self.id})
 
 class Commentario(models.Model):
+    name = models.CharField(max_length = 20, default='Enter your name...')
     commfield = models.TextField()
     pubdate = models.DateTimeField(auto_now_add=True)
     article = models.ForeignKey(Post, null=True, related_name="comments")
+
 
     def __unicode__(self):
             return self.commfield

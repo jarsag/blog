@@ -12,14 +12,6 @@
     <h1 class="main__header"> Создать / Редактировать   </h1>
   </div>
 
-<nav class="navigation">
-    {% for obj in object_list %}
-        <div>
-            <div class=""> <a href='{{obj.get_absolute_url}}'>  {{obj.title}}  </a> </div>
-        </div>
-    {% endfor %}
-</nav>
-
 <div class="posts__container">
   <form method='POST'action=''>{% csrf_token %}
   {{ form.as_p  }}

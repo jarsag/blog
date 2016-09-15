@@ -4,16 +4,16 @@ from .models import Post, Commentario, Prev
 
 
 class PostModelAdmin(admin.ModelAdmin):
-    list_display = ["title", "updated", "timestamp"]
+    list_display = ["title","content","prev", "updated", "timestamp"]
     list_display_links = ["updated"]
     list_filter = ["updated", "timestamp"]
     search_fields = ["title", "content"]
-    list_editable = ["title"]
+    list_editable = ["title","content","prev"]
     class Meta:
 	    model = Post
 
 class CommentarioModelAdmin(admin.ModelAdmin):
-    list_display = ["commfield", "pubdate"]
+    list_display = ["commfield", "pubdate", "name"]
 
     class Meta:
         model = Commentario
